@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Transfer Group LLC | Logística Internacional</title>
+  <meta name="description" content="Global Transfer Group LLC: transferencias y logística internacional desde Florida. Envíos seguros, rápidos y confiables a todo el mundo." />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link rel="icon" type="image/png" href="global-logo.png">
+  <style>
+    :root{
+      --navy:#0e2b53;
+      --navy-700:#142e50;
+      --navy-900:#081b36;
+      --orange:#e87348;
+      --orange-700:#d96438;
+      --green:#25c27a;
+      --ice:#eaf2ff;
+      --white:#ffffff;
+      --slate:#8ea0b8;
+      --card:#0f325f;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--white); background:linear-gradient(180deg,var(--navy) 0%, var(--navy-700) 60%, var(--navy-900) 100%);
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{width:min(1200px, 92%); margin-inline:auto}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.15rem; border-radius:999px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.06); backdrop-filter: blur(4px); color:var(--white); font-weight:600; transition:.25s ease; cursor:pointer}
+    .btn:hover{transform:translateY(-2px); border-color:var(--orange); box-shadow:0 6px 20px rgba(232,115,72,.35)}
+    .btn--accent{background:var(--orange); color:#fff; border-color:transparent}
+    .btn--accent:hover{filter:brightness(1.05); box-shadow:0 10px 24px rgba(232,115,72,.45)}
+    .btn--green{background:var(--green); color:#fff; border-color:transparent}
+    .btn--green:hover{filter:brightness(1.05); box-shadow:0 10px 24px rgba(37,194,122,.45)}
+    .tag{display:inline-block; padding:.3rem .7rem; border:1px solid rgba(255,255,255,.25); border-radius:999px; font-size:.8rem; color:var(--ice)}
+    .tag--green{border-color:var(--green); color:var(--green)}
+    .nav{position:sticky; top:0; z-index:50; background:rgba(10, 28, 58,.55); backdrop-filter: blur(10px); border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav__bar{display:flex; align-items:center; justify-content:space-between; padding:.7rem 0}
+    .brand{display:flex; align-items:center; gap:.75rem}
+    .brand__logo{height:46px; width:auto}
+    .menu{display:flex; gap:1rem}
+    .menu a{opacity:.9; padding:.6rem .8rem; border-radius:10px}
+    .menu a:hover{background:rgba(255,255,255,.06)}
+    .lang{display:flex; align-items:center; gap:.4rem}
+    .lang select{background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); color:var(--white); padding:.45rem .7rem; border-radius:10px}
+    .hamb{display:none}
+
+    /* HERO */
+    .hero{position:relative; padding: clamp(3rem, 6vw, 6rem) 0}
+    .hero__grid{display:grid; grid-template-columns: 1.1fr .9fr; gap: clamp(1.2rem, 3vw, 2.4rem); align-items:center}
+    .headline{font-size: clamp(1.8rem, 4vw, 3rem); line-height:1.1; margin:.25rem 0 .5rem}
+    .sub{font-size: clamp(1rem, 2vw, 1.12rem); color:var(--ice)}
+    .hero__card{background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); padding:1rem; border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); box-shadow: var(--shadow)}
+    .pillbar{display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap}
+    .hero__media{position:relative}
+    .hero__media img{border-radius: var(--radius); box-shadow: var(--shadow)}
+    .floating{
+      position:absolute; right:-10px; bottom:-12px; background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:1rem; width:min(340px, 92%); box-shadow: var(--shadow)
+    }
+
+    /* SECTIONS */
+    section{padding: clamp(2.5rem, 5vw, 4rem) 0;}
+    h2{font-size: clamp(1.4rem, 3vw, 2rem); margin:.2rem 0 1rem}
+    .lead{color:var(--ice)}
+    .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding:1.1rem; box-shadow: var(--shadow); transition:.25s}
+    .card:hover{transform: translateY(-4px)}
+    .icon{width:28px; height:28px; color:var(--orange)}
+    .icon--green{color:var(--green)}
+
+    /* SHIPPING MODES */
+    .listings{display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem}
+    .property{display:flex; flex-direction:column; overflow:hidden}
+    .property img{aspect-ratio:16/10; object-fit:cover; border-radius:12px}
+    .price{font-weight:800; color:var(--green)}
+    .property .meta{display:flex; gap:.8rem; color:var(--ice)}
+
+    /* STATS */
+    .stats{display:grid; grid-template-columns: repeat(4, 1fr); gap:1rem; text-align:center}
+    .stat__num{font-size: clamp(2rem, 4vw, 3rem); font-weight:900; color:var(--orange)}
+    .stat__label{color:var(--ice); font-size:.95rem}
+
+    /* Gallery */
+    .gallery{columns: 2; column-gap: .7rem}
+    .gallery img{width:100%; margin:0 0 .7rem; border-radius:12px; break-inside: avoid; box-shadow: var(--shadow)}
+
+    /* Process */
+    .steps{display:grid; grid-template-columns: repeat(4, 1fr); gap:1rem}
+    .step{position:relative; padding:1rem; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:16px}
+    .step .num{position:absolute; top:10px; right:14px; font-weight:900; color:var(--orange); opacity:.8}
+
+    /* Testimonials */
+    .quotes{display:grid; grid-template-columns: repeat(3,1fr); gap:1rem}
+    .quote{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:1rem}
+
+    /* FAQ */
+    .faq .item{border-bottom:1px solid rgba(255,255,255,.15)}
+    .faq summary{cursor:pointer; padding:.9rem 0; list-style:none}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq p{color:var(--ice); margin:0 0 1rem}
+
+    /* Contact */
+    form{display:grid; grid-template-columns:1fr 1fr; gap: .8rem}
+    input, textarea, select{width:100%; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); color:var(--white); border-radius:12px; padding:.8rem}
+    textarea{min-height:120px; grid-column:1/-1}
+
+    .contact-wrap{display:grid; grid-template-columns:1.1fr .9fr; gap:1rem; align-items:start}
+    iframe{width:100%; height:100%; min-height:360px; border:0; border-radius:16px}
+
+    footer{border-top:1px solid rgba(255,255,255,.1); padding:1.5rem 0; color:var(--ice)}
+
+    /* Responsive */
+    @media (max-width: 1000px){
+      .hero__grid, .contact-wrap{grid-template-columns:1fr}
+      .floating{position:relative; right:auto; bottom:auto; margin-top:.8rem; width:100%}
+      .grid-3{grid-template-columns:1fr 1fr}
+      .listings{grid-template-columns:1fr 1fr}
+      .steps{grid-template-columns:1fr 1fr}
+      .quotes{grid-template-columns:1fr 1fr}
+      .stats{grid-template-columns:1fr 1fr}
+      .menu{display:none}
+      .hamb{display:inline-flex; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:12px; padding:.5rem}
+      nav.open .menu{display:flex; flex-direction:column; position:absolute; left:0; right:0; top:60px; background:rgba(12,30,64,.96); padding:1rem; border-bottom:1px solid rgba(255,255,255,.08)}
+    }
+    @media (max-width: 680px){
+      .grid-3, .listings, .steps, .quotes, .stats{grid-template-columns:1fr}
+      .gallery{columns: 1}
+      form{grid-template-columns:1fr}
+      .pillbar{flex-direction:column}
+    }
+
+    /* Animations */
+    .reveal{opacity:0; transform: translateY(16px); transition: .7s ease}
+    .reveal.in{opacity:1; transform:none}
+    .glow{box-shadow: 0 0 0 transparent; transition: box-shadow .4s ease}
+    .glow:hover{box-shadow:0 0 0 4px rgba(232,115,72,.15)}
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="top">
+    <div class="container nav__bar">
+      <a href="#top" class="brand">
+        <img src="global-logo.png" alt="Global Transfer Group LLC" class="brand__logo" />
+      </a>
+      <div class="menu" id="menu">
+        <a href="#services" data-i18n="nav.services">Servicios</a>
+        <a href="#modes" data-i18n="nav.modes">Modos de envío</a>
+        <a href="#process" data-i18n="nav.process">Proceso</a>
+        <a href="#gallery" data-i18n="nav.gallery">Operaciones</a>
+        <a href="#contact" data-i18n="nav.contact">Contacto</a>
+      </div>
+      <div class="lang">
+        <label for="langSel" class="tag" data-i18n="nav.language">Idioma</label>
+        <select id="langSel" aria-label="Language selector">
+          <option value="es" selected>ES</option>
+          <option value="en">EN</option>
+        </select>
+        <button class="hamb" id="hamb" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text reveal">
+        <span class="tag tag--green" data-i18n="hero.tag">Logística Internacional · Florida, USA</span>
+        <h1 class="headline" data-i18n="hero.title">Movemos lo que más importa, a cualquier rincón del mundo.</h1>
+        <p class="sub" data-i18n="hero.sub">En Global Transfer Group combinamos experiencia logística, tecnología y una red global para garantizar transferencias seguras y puntuales.</p>
+        <div class="pillbar">
+          <a href="#services" class="btn btn--accent" data-i18n="hero.cta1">Ver servicios</a>
+          <a href="#contact" class="btn" data-i18n="hero.cta2">Solicitar cotización</a>
+        </div>
+        <div style="margin-top:1rem; display:flex; gap:1rem; flex-wrap:wrap">
+          <span class="tag glow" data-i18n="hero.badge1">✓ Rastreo en tiempo real</span>
+          <span class="tag glow" data-i18n="hero.badge2">✓ Cobertura global</span>
+          <span class="tag glow" data-i18n="hero.badge3">✓ Respuesta en 24h</span>
+        </div>
+      </div>
+      <div class="hero__media reveal">
+        <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="International logistics operations"/>
+        <div class="floating">
+          <strong data-i18n="hero.card.title">Global Transfer Group LLC</strong>
+          <p style="margin:.3rem 0 .6rem; color:var(--ice)" data-i18n="hero.card.address">Florida, United States · Est. 2026</p>
+          <a class="btn btn--accent" href="#contact" data-i18n="hero.card.cta">Cotizar envío</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <span class="tag" data-i18n="services.tag">Qué hacemos</span>
+      <h2 data-i18n="services.title">Soluciones pensadas para cada tipo de transferencia</h2>
+      <p class="lead" data-i18n="services.lead">Desde el origen hasta el destino, operamos con precisión y compromiso para garantizar la integridad de cada envío.</p>
+      <div class="grid-3" style="margin-top:1rem">
+        <div class="card reveal">
+          <div style="display:flex; gap:.8rem; align-items:center">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <h3 data-i18n="services.intl">Carga Internacional</h3>
+          </div>
+          <p class="lead" data-i18n="services.intldesc">Exportaciones e importaciones aéreas y marítimas con gestión aduanal incluida. Llegamos a más de 50 países.</p>
+        </div>
+        <div class="card reveal">
+          <div style="display:flex; gap:.8rem; align-items:center">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <h3 data-i18n="services.local">Distribución Local</h3>
+          </div>
+          <p class="lead" data-i18n="services.localdesc">Distribución terrestre en Estados Unidos con rastreo GPS y confirmación de entrega en tiempo real.</p>
+        </div>
+        <div class="card reveal">
+          <div style="display:flex; gap:.8rem; align-items:center">
+            <svg class="icon icon--green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <h3 data-i18n="services.customs">Gestión Logística</h3>
+          </div>
+          <p class="lead" data-i18n="services.customsdesc">Despacho aduanal, documentación, almacenaje y asesoramiento para optimizar toda tu cadena de suministro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shipping Modes -->
+  <section id="modes">
+    <div class="container">
+      <span class="tag" data-i18n="modes.tag">Modos de envío</span>
+      <h2 data-i18n="modes.title">El transporte adecuado para cada necesidad</h2>
+      <p class="lead" data-i18n="modes.lead">Ofrecemos múltiples modalidades para adaptarnos a tu volumen, urgencia y presupuesto.</p>
+      <div class="listings" style="margin-top:1rem">
+        <article class="card property reveal">
+          <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1200&auto=format&fit=crop" alt="Air freight"/>
+          <h3 data-i18n="modes.air">Carga Aérea</h3>
+          <div class="meta"><span data-i18n="modes.air.time">⚡ 2–5 días</span><span data-i18n="modes.air.reach">🌍 Global</span></div>
+          <p class="price" data-i18n="modes.air.tag">Envíos urgentes</p>
+          <a class="btn" href="#contact" data-i18n="modes.cta">Consultar tarifas</a>
+        </article>
+        <article class="card property reveal">
+          <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop" alt="Sea freight"/>
+          <h3 data-i18n="modes.sea">Carga Marítima</h3>
+          <div class="meta"><span data-i18n="modes.sea.time">🚢 15–30 días</span><span data-i18n="modes.sea.reach">🌍 Internacional</span></div>
+          <p class="price" data-i18n="modes.sea.tag">Grandes volúmenes</p>
+          <a class="btn" href="#contact" data-i18n="modes.cta">Consultar tarifas</a>
+        </article>
+        <article class="card property reveal">
+          <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1200&auto=format&fit=crop" alt="Ground distribution"/>
+          <h3 data-i18n="modes.ground">Distribución Terrestre</h3>
+          <div class="meta"><span data-i18n="modes.ground.time">🚛 1–5 días</span><span data-i18n="modes.ground.reach">🇺🇸 USA</span></div>
+          <p class="price" data-i18n="modes.ground.tag">Entregas locales</p>
+          <a class="btn" href="#contact" data-i18n="modes.cta">Consultar tarifas</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Global Transfer -->
+  <section id="why">
+    <div class="container">
+      <span class="tag" data-i18n="why.tag">¿Por qué elegirnos?</span>
+      <h2 data-i18n="why.title">Tecnología y experiencia al servicio de tu logística</h2>
+      <div class="grid-3" style="margin-top:1rem">
+        <div class="card reveal">
+          <strong data-i18n="why.p1.title">Seguridad garantizada</strong>
+          <p class="lead" data-i18n="why.p1">Todos los envíos cuentan con seguro de carga y rastreo GPS en tiempo real para tu total tranquilidad.</p>
+        </div>
+        <div class="card reveal">
+          <strong data-i18n="why.p2.title">Red global de socios</strong>
+          <p class="lead" data-i18n="why.p2">Contamos con aliados logísticos en más de 50 países para asegurar el último kilómetro en cada destino.</p>
+        </div>
+        <div class="card reveal">
+          <strong data-i18n="why.p3.title">Soporte personalizado</strong>
+          <p class="lead" data-i18n="why.p3">Un ejecutivo de cuenta te acompaña en cada envío. Respuesta rápida, soluciones concretas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section id="stats" style="padding: clamp(1.5rem, 3vw, 2.5rem) 0">
+    <div class="container">
+      <div class="stats">
+        <div class="reveal">
+          <div class="stat__num">500<span style="color:var(--green)">+</span></div>
+          <div class="stat__label" data-i18n="stats.s1">Envíos completados</div>
+        </div>
+        <div class="reveal">
+          <div class="stat__num">50<span style="color:var(--green)">+</span></div>
+          <div class="stat__label" data-i18n="stats.s2">Países de cobertura</div>
+        </div>
+        <div class="reveal">
+          <div class="stat__num">99<span style="color:var(--green)">%</span></div>
+          <div class="stat__label" data-i18n="stats.s3">Entregas a tiempo</div>
+        </div>
+        <div class="reveal">
+          <div class="stat__num">24<span style="font-size:1.2rem; color:var(--green)">/7</span></div>
+          <div class="stat__label" data-i18n="stats.s4">Soporte disponible</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="container">
+      <span class="tag" data-i18n="gallery.tag">Operaciones</span>
+      <h2 data-i18n="gallery.title">Nuestra red en acción</h2>
+      <p class="lead" data-i18n="gallery.lead">Desde puertos hasta puertas, gestionamos cada eslabón de la cadena con precisión.</p>
+      <div class="gallery" style="margin-top:1rem">
+        <img class="reveal" src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?q=80&w=1200&auto=format&fit=crop" alt="Cargo containers port"/>
+        <img class="reveal" src="https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1200&auto=format&fit=crop" alt="Warehouse operations"/>
+        <img class="reveal" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop" alt="Shipping operations"/>
+        <img class="reveal" src="https://images.unsplash.com/photo-1498931299472-f7a63a5a1cfa?q=80&w=1200&auto=format&fit=crop" alt="Logistics center"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process">
+    <div class="container">
+      <span class="tag" data-i18n="process.tag">Cómo trabajamos</span>
+      <h2 data-i18n="process.title">Tu envío en 4 pasos simples</h2>
+      <div class="steps" style="margin-top:1rem">
+        <div class="step reveal">
+          <div class="num">01</div>
+          <strong data-i18n="process.s1.title">Cotización</strong>
+          <p class="lead" data-i18n="process.s1">Indicá origen, destino, peso y tipo de carga. Recibís precio en minutos.</p>
+        </div>
+        <div class="step reveal">
+          <div class="num">02</div>
+          <strong data-i18n="process.s2.title">Recolección</strong>
+          <p class="lead" data-i18n="process.s2">Coordinamos el pickup en tu ubicación o recibimos en nuestro depósito en Florida.</p>
+        </div>
+        <div class="step reveal">
+          <div class="num">03</div>
+          <strong data-i18n="process.s3.title">Tránsito</strong>
+          <p class="lead" data-i18n="process.s3">Seguí tu carga en tiempo real. Nos ocupamos de aduanas y documentación.</p>
+        </div>
+        <div class="step reveal">
+          <div class="num">04</div>
+          <strong data-i18n="process.s4.title">Entrega</strong>
+          <p class="lead" data-i18n="process.s4">Confirmación de entrega con comprobante fotográfico y firma digital.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials & FAQ -->
+  <section id="social">
+    <div class="container">
+      <div class="grid-3">
+        <div style="grid-column: span 2">
+          <span class="tag" data-i18n="test.tag">Clientes</span>
+          <h2 data-i18n="test.title">Lo que dicen de nosotros</h2>
+          <div class="quotes" style="margin-top:1rem">
+            <blockquote class="quote reveal">
+              <p data-i18n="test.q1">"Enviamos mercancía regularmente a América Latina y siempre llega en perfectas condiciones."</p>
+              <cite>— D. Martínez</cite>
+            </blockquote>
+            <blockquote class="quote reveal">
+              <p data-i18n="test.q2">"El proceso fue ágil, el seguimiento excelente y el equipo muy profesional."</p>
+              <cite>— C. Williams</cite>
+            </blockquote>
+            <blockquote class="quote reveal">
+              <p data-i18n="test.q3">"Llevamos 2 años trabajando con Global Transfer y no cambiaríamos de proveedor."</p>
+              <cite>— A. Pérez</cite>
+            </blockquote>
+          </div>
+        </div>
+        <div>
+          <span class="tag" data-i18n="faq.tag">FAQ</span>
+          <h2 data-i18n="faq.title">Preguntas frecuentes</h2>
+          <div class="faq">
+            <details class="item reveal">
+              <summary data-i18n="faq.q1">¿Qué tipo de carga manejan?</summary>
+              <p data-i18n="faq.a1">Manejamos todo tipo de mercancía: paquetes pequeños, pallets, carga perecedera y mercancía sobredimensionada.</p>
+            </details>
+            <details class="item reveal">
+              <summary data-i18n="faq.q2">¿Cuánto tarda un envío internacional?</summary>
+              <p data-i18n="faq.a2">Depende del destino y modalidad. Aéreo: 2–5 días. Marítimo: 15–30 días. Terrestre USA: 1–5 días.</p>
+            </details>
+            <details class="item reveal">
+              <summary data-i18n="faq.q3">¿Ofrecen seguro de carga?</summary>
+              <p data-i18n="faq.a3">Sí, todos los envíos incluyen cobertura básica. También ofrecemos seguros extendidos para mercancía de alto valor.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <span class="tag" data-i18n="contact.tag">Contacto</span>
+      <h2 data-i18n="contact.title">Hablemos de tu próximo envío</h2>
+      <div class="contact-wrap" style="margin-top:1rem">
+        <div class="card reveal">
+          <form action="https://formsubmit.co/globaltransfer.contact@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Nuevo contacto desde Global Transfer Group LLC"/>
+            <input type="hidden" name="_template" value="box"/>
+            <input type="hidden" name="_captcha" value="true"/>
+
+            <label>
+              <span data-i18n="form.name">Nombre</span>
+              <input required name="name" placeholder="Jane Doe" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input required type="email" name="email" placeholder="name@email.com" />
+            </label>
+            <label>
+              <span data-i18n="form.phone">Teléfono</span>
+              <input name="phone" placeholder="+1 954 ..." />
+            </label>
+            <label>
+              <span data-i18n="form.type">Tipo de consulta</span>
+              <select name="type">
+                <option value="export" data-i18n="form.opt.export">Exportación</option>
+                <option value="import" data-i18n="form.opt.import">Importación</option>
+                <option value="local" data-i18n="form.opt.local">Distribución local</option>
+                <option value="general" data-i18n="form.opt.general">Consulta general</option>
+              </select>
+            </label>
+            <label style="grid-column:1/-1">
+              <span data-i18n="form.msg">Mensaje</span>
+              <textarea name="message" placeholder="Describí tu envío: origen, destino, tipo y peso estimado…"></textarea>
+            </label>
+            <button class="btn btn--accent" type="submit" data-i18n="form.send">Enviar</button>
+          </form>
+          <div style="margin-top:1rem; display:grid; gap:.3rem; color:var(--ice)">
+            <div><strong>Email:</strong> <a class="glow" href="mailto:globaltransfer.contact@gmail.com">globaltransfer.contact@gmail.com</a></div>
+            <div><strong data-i18n="contact.base">Base:</strong> Florida, United States</div>
+          </div>
+        </div>
+        <div class="reveal">
+          <iframe title="Global Transfer Group on Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Miami,+FL&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap">
+      <div>© <span id="year"></span> Global Transfer Group LLC <span class="tag tag--green">EST. 2026</span></div>
+      <div style="display:flex; gap:1rem">
+        <a class="glow" href="#top" data-i18n="footer.top">Volver arriba</a>
+        <a class="glow" href="#contact" data-i18n="footer.contact">Contacto</a>
+        <a class="glow" href="#services" data-i18n="footer.services">Servicios</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.querySelector('nav');
+    document.getElementById('hamb').addEventListener('click',()=>nav.classList.toggle('open'));
+
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{threshold:.2});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const strings = {
+      es: {
+        'nav.services':'Servicios','nav.modes':'Modos de envío','nav.process':'Proceso','nav.gallery':'Operaciones','nav.contact':'Contacto','nav.language':'Idioma',
+        'hero.tag':'Logística Internacional · Florida, USA',
+        'hero.title':'Movemos lo que más importa, a cualquier rincón del mundo.',
+        'hero.sub':'En Global Transfer Group combinamos experiencia logística, tecnología y una red global para garantizar transferencias seguras y puntuales.',
+        'hero.cta1':'Ver servicios','hero.cta2':'Solicitar cotización',
+        'hero.badge1':'✓ Rastreo en tiempo real','hero.badge2':'✓ Cobertura global','hero.badge3':'✓ Respuesta en 24h',
+        'hero.card.title':'Global Transfer Group LLC','hero.card.address':'Florida, United States · Est. 2026','hero.card.cta':'Cotizar envío',
+        'services.tag':'Qué hacemos','services.title':'Soluciones pensadas para cada tipo de transferencia',
+        'services.lead':'Desde el origen hasta el destino, operamos con precisión y compromiso para garantizar la integridad de cada envío.',
+        'services.intl':'Carga Internacional','services.intldesc':'Exportaciones e importaciones aéreas y marítimas con gestión aduanal incluida. Llegamos a más de 50 países.',
+        'services.local':'Distribución Local','services.localdesc':'Distribución terrestre en Estados Unidos con rastreo GPS y confirmación de entrega en tiempo real.',
+        'services.customs':'Gestión Logística','services.customsdesc':'Despacho aduanal, documentación, almacenaje y asesoramiento para optimizar toda tu cadena de suministro.',
+        'modes.tag':'Modos de envío','modes.title':'El transporte adecuado para cada necesidad',
+        'modes.lead':'Ofrecemos múltiples modalidades para adaptarnos a tu volumen, urgencia y presupuesto.',
+        'modes.air':'Carga Aérea','modes.air.time':'⚡ 2–5 días','modes.air.reach':'🌍 Global','modes.air.tag':'Envíos urgentes',
+        'modes.sea':'Carga Marítima','modes.sea.time':'🚢 15–30 días','modes.sea.reach':'🌍 Internacional','modes.sea.tag':'Grandes volúmenes',
+        'modes.ground':'Distribución Terrestre','modes.ground.time':'🚛 1–5 días','modes.ground.reach':'🇺🇸 USA','modes.ground.tag':'Entregas locales',
+        'modes.cta':'Consultar tarifas',
+        'why.tag':'¿Por qué elegirnos?','why.title':'Tecnología y experiencia al servicio de tu logística',
+        'why.p1.title':'Seguridad garantizada','why.p1':'Todos los envíos cuentan con seguro de carga y rastreo GPS en tiempo real para tu total tranquilidad.',
+        'why.p2.title':'Red global de socios','why.p2':'Contamos con aliados logísticos en más de 50 países para asegurar el último kilómetro en cada destino.',
+        'why.p3.title':'Soporte personalizado','why.p3':'Un ejecutivo de cuenta te acompaña en cada envío. Respuesta rápida, soluciones concretas.',
+        'stats.s1':'Envíos completados','stats.s2':'Países de cobertura','stats.s3':'Entregas a tiempo','stats.s4':'Soporte disponible',
+        'gallery.tag':'Operaciones','gallery.title':'Nuestra red en acción','gallery.lead':'Desde puertos hasta puertas, gestionamos cada eslabón de la cadena con precisión.',
+        'process.tag':'Cómo trabajamos','process.title':'Tu envío en 4 pasos simples',
+        'process.s1.title':'Cotización','process.s1':'Indicá origen, destino, peso y tipo de carga. Recibís precio en minutos.',
+        'process.s2.title':'Recolección','process.s2':'Coordinamos el pickup en tu ubicación o recibimos en nuestro depósito en Florida.',
+        'process.s3.title':'Tránsito','process.s3':'Seguí tu carga en tiempo real. Nos ocupamos de aduanas y documentación.',
+        'process.s4.title':'Entrega','process.s4':'Confirmación de entrega con comprobante fotográfico y firma digital.',
+        'test.tag':'Clientes','test.title':'Lo que dicen de nosotros',
+        'test.q1':'"Enviamos mercancía regularmente a América Latina y siempre llega en perfectas condiciones."',
+        'test.q2':'"El proceso fue ágil, el seguimiento excelente y el equipo muy profesional."',
+        'test.q3':'"Llevamos 2 años trabajando con Global Transfer y no cambiaríamos de proveedor."',
+        'faq.tag':'FAQ','faq.title':'Preguntas frecuentes',
+        'faq.q1':'¿Qué tipo de carga manejan?','faq.a1':'Manejamos todo tipo de mercancía: paquetes pequeños, pallets, carga perecedera y mercancía sobredimensionada.',
+        'faq.q2':'¿Cuánto tarda un envío internacional?','faq.a2':'Depende del destino y modalidad. Aéreo: 2–5 días. Marítimo: 15–30 días. Terrestre USA: 1–5 días.',
+        'faq.q3':'¿Ofrecen seguro de carga?','faq.a3':'Sí, todos los envíos incluyen cobertura básica. También ofrecemos seguros extendidos para mercancía de alto valor.',
+        'contact.tag':'Contacto','contact.title':'Hablemos de tu próximo envío','contact.base':'Base:',
+        'form.name':'Nombre','form.phone':'Teléfono','form.type':'Tipo de consulta',
+        'form.opt.export':'Exportación','form.opt.import':'Importación','form.opt.local':'Distribución local','form.opt.general':'Consulta general',
+        'form.msg':'Mensaje','form.send':'Enviar',
+        'footer.top':'Volver arriba','footer.contact':'Contacto','footer.services':'Servicios'
+      },
+      en: {
+        'nav.services':'Services','nav.modes':'Shipping modes','nav.process':'Process','nav.gallery':'Operations','nav.contact':'Contact','nav.language':'Language',
+        'hero.tag':'International Logistics · Florida, USA',
+        'hero.title':'We move what matters most, to every corner of the world.',
+        'hero.sub':'At Global Transfer Group we combine logistics expertise, technology and a global network to guarantee safe, on-time transfers.',
+        'hero.cta1':'Our services','hero.cta2':'Get a quote',
+        'hero.badge1':'✓ Real-time tracking','hero.badge2':'✓ Global coverage','hero.badge3':'✓ Reply within 24h',
+        'hero.card.title':'Global Transfer Group LLC','hero.card.address':'Florida, United States · Est. 2026','hero.card.cta':'Get a quote',
+        'services.tag':'What we do','services.title':'Solutions designed for every type of transfer',
+        'services.lead':'From origin to destination, we operate with precision and commitment to ensure the integrity of every shipment.',
+        'services.intl':'International Freight','services.intldesc':'Air and sea exports and imports with customs management included. We reach 50+ countries.',
+        'services.local':'Local Distribution','services.localdesc':'Ground distribution across the United States with GPS tracking and real-time delivery confirmation.',
+        'services.customs':'Logistics Management','services.customsdesc':'Customs clearance, documentation, warehousing and advisory to optimize your entire supply chain.',
+        'modes.tag':'Shipping modes','modes.title':'The right transport for every need',
+        'modes.lead':'We offer multiple modalities to adapt to your volume, urgency and budget.',
+        'modes.air':'Air Freight','modes.air.time':'⚡ 2–5 days','modes.air.reach':'🌍 Global','modes.air.tag':'Urgent shipments',
+        'modes.sea':'Sea Freight','modes.sea.time':'🚢 15–30 days','modes.sea.reach':'🌍 International','modes.sea.tag':'Large volumes',
+        'modes.ground':'Ground Distribution','modes.ground.time':'🚛 1–5 days','modes.ground.reach':'🇺🇸 USA','modes.ground.tag':'Local deliveries',
+        'modes.cta':'Check rates',
+        'why.tag':'Why choose us?','why.title':'Technology and expertise at the service of your logistics',
+        'why.p1.title':'Guaranteed security','why.p1':'All shipments include cargo insurance and real-time GPS tracking for your complete peace of mind.',
+        'why.p2.title':'Global partner network','why.p2':'We have logistics partners in 50+ countries to ensure last-mile delivery at every destination.',
+        'why.p3.title':'Personalized support','why.p3':'A dedicated account manager handles every shipment. Fast responses, concrete solutions.',
+        'stats.s1':'Completed shipments','stats.s2':'Countries covered','stats.s3':'On-time delivery','stats.s4':'Support available',
+        'gallery.tag':'Operations','gallery.title':'Our network in action','gallery.lead':'From ports to doors, we manage every link of the chain with precision.',
+        'process.tag':'How we work','process.title':'Your shipment in 4 simple steps',
+        'process.s1.title':'Quote','process.s1':'Tell us origin, destination, weight and cargo type. Get a price in minutes.',
+        'process.s2.title':'Pickup','process.s2':'We coordinate collection at your location or receive at our Florida warehouse.',
+        'process.s3.title':'Transit','process.s3':'Track your cargo in real time. We handle customs and all documentation.',
+        'process.s4.title':'Delivery','process.s4':'Delivery confirmation with photo proof and digital signature.',
+        'test.tag':'Clients','test.title':'What people say about us',
+        'test.q1':'"We ship goods to Latin America regularly and they always arrive in perfect condition."',
+        'test.q2':'"The process was smooth, tracking was excellent and the team very professional."',
+        'test.q3':'"We\'ve been working with Global Transfer for 2 years and wouldn\'t switch providers."',
+        'faq.tag':'FAQ','faq.title':'Frequently asked questions',
+        'faq.q1':'What types of cargo do you handle?','faq.a1':'We handle all types of goods: small packages, pallets, perishable cargo and oversized freight.',
+        'faq.q2':'How long does an international shipment take?','faq.a2':'Depends on destination and mode. Air: 2–5 days. Sea: 15–30 days. US ground: 1–5 days.',
+        'faq.q3':'Do you offer cargo insurance?','faq.a3':'Yes, all shipments include basic coverage. Extended insurance is also available for high-value goods.',
+        'contact.tag':'Contact','contact.title':'Let\'s talk about your next shipment','contact.base':'Base:',
+        'form.name':'Name','form.phone':'Phone','form.type':'Inquiry type',
+        'form.opt.export':'Export','form.opt.import':'Import','form.opt.local':'Local distribution','form.opt.general':'General inquiry',
+        'form.msg':'Message','form.send':'Send',
+        'footer.top':'Back to top','footer.contact':'Contact','footer.services':'Services'
+      }
+    };
+
+    const applyLang = (lang)=>{
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n');
+        const value = strings[lang][key];
+        if(value) el.textContent = value;
+      });
+      document.documentElement.lang = lang;
+    };
+
+    const sel = document.getElementById('langSel');
+    const saved = localStorage.getItem('gt-lang') || 'es';
+    sel.value = saved; applyLang(saved);
+    sel.addEventListener('change', ()=>{
+      applyLang(sel.value);
+      localStorage.setItem('gt-lang', sel.value);
+    });
+  </script>
+</body>
+</html>
